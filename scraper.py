@@ -34,13 +34,16 @@ WebDriverWait(driver, 100).until(
 for website in websites:
     demos_row = []
     demos_row.append(website)
-    time.sleep(5)
+    
+    time.sleep(10)
     url_name = driver.find_element_by_xpath("//input[@type='search' and @placeholder='Enter a URL']")
     url_name.send_keys(website)
 
     driver.find_element_by_xpath("//input[@type='submit' and @value='Search']").click()
 
     time.sleep(20)
+    # WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.LINK_TEXT, 'form-control form-control--has-prefix form-control--has-suffix form-control--has-large-prefix form-control--has-large-suffix form-control--has-large-text-input form-control--column-1 search-page-main-content')))
+    
     
     # WebDriverWait(driver, 25).until(
     #     EC.presence_of_element_located((By.CLASS_NAME, 'table__header table__header--align-left'))
@@ -49,9 +52,9 @@ for website in websites:
     # driver.find_element_by_link_text(websites[0]).click()
 
     try:
-        time.sleep(5)
         driver.find_element_by_link_text(website).click()
-        time.sleep(10)
+        WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, '//*[@id="tab-title_undefined_DEMOGRAPHICS"]/div/div[2]/article/div[1]/h2')))
+        
         try:
 
             # Appending gender shares + indices, respectively
@@ -100,11 +103,17 @@ for website in websites:
         except NoSuchElementException:
             # Website found, but "Not Enough Data"
             driver.get("https://www.quantcast.com/measure/properties")
+            demos_row.append("Not Enough Data")
+            sh.append_row(demos_row, 'USER_ENTERED')
+            time.sleep(10)
             continue
 
     except NoSuchElementException:
         # Website not found
         driver.get("https://www.quantcast.com/measure/properties/")
+        demos_row.append("Not Found")
+        sh.append_row(demos_row, 'USER_ENTERED')
+        time.sleep(10)
         continue
 
     
