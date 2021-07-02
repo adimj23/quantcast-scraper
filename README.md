@@ -10,8 +10,9 @@ Must log in manually before automation kicks in.
 
 # Setting up some constants
 Install [ChromeDriver](https://chromedriver.chromium.org/downloads) for the version matching your computer's Chrome browser.
-1. In info.py copy the path of your Chrome Driver installation into DRIVER_PATH
-2. Create a Google sheet and copy the name into SHEET_NAME
+1. Rename `info-template.py` to `info.py`
+2. In info.py copy the path of your Chrome Driver installation into DRIVER_PATH
+3. Create a Google sheet and copy the name into SHEET_NAME
 
 # Linking your Google Sheet
 1. Go to console.cloud.google.com in your browser using your desire Google Account.
