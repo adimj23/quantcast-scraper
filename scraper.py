@@ -10,7 +10,8 @@ from info import SHEET_NAME, DRIVER_PATH
 from datetime import datetime
 import gspread
 
-websites = ["kiwireport.com", "worldlifestyle.com","startribune.com"]
+websites = ["ballotpedia.org", "baseball-reference.com", "basketball-reference.com", "brainly.com", 
+"britannica.com", "bustle.com", "buzzfeed.com", "campingworld.com", "cars.com"]
 
 
 
@@ -33,6 +34,7 @@ WebDriverWait(driver, 100).until(
 for website in websites:
     demos_row = []
     demos_row.append(website)
+    time.sleep(5)
     url_name = driver.find_element_by_xpath("//input[@type='search' and @placeholder='Enter a URL']")
     url_name.send_keys(website)
 
@@ -47,6 +49,7 @@ for website in websites:
     # driver.find_element_by_link_text(websites[0]).click()
 
     try:
+        time.sleep(5)
         driver.find_element_by_link_text(website).click()
         time.sleep(10)
         try:
@@ -96,10 +99,12 @@ for website in websites:
             
         except NoSuchElementException:
             driver.get("https://www.quantcast.com/measure/properties")
+            print("Not enough data", website)
             continue
 
     except NoSuchElementException:
         driver.get("https://www.quantcast.com/measure/properties/")
+        print("Not found 2", website)
         continue
 
     
