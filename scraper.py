@@ -98,13 +98,13 @@ for website in websites:
     
             
         except NoSuchElementException:
+            # Website found, but "Not Enough Data"
             driver.get("https://www.quantcast.com/measure/properties")
-            print("Not enough data", website)
             continue
 
     except NoSuchElementException:
+        # Website not found
         driver.get("https://www.quantcast.com/measure/properties/")
-        print("Not found 2", website)
         continue
 
     
