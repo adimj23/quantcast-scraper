@@ -24,7 +24,9 @@ Install [ChromeDriver](https://chromedriver.chromium.org/downloads) for the vers
 7. In Google Drive, create and title a new Google Sheet. You will need this name later.
 8. Open creds.json and copy the "client_email" value and share your Sheet with this email.
 
-# Assumptions Made
+# Assumptions Made/Possible errors
 - Did not thoroughly test handling if the query has no exact matches
 - Did not account for queries that might result in "Not Enough Data"
 - Possible bugs if 'NaN' is a result for certain data points
+- Using implicit waits (`time.sleep`) for now, may need to change to explicit waits
+
