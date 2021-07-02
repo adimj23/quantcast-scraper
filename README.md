@@ -2,6 +2,8 @@
 # About
 Using Selenium and Chrome Driver to automate the collection of demographics information from quantcast.com queries.
 
+Must log in manually before automation kicks in.
+
 # Required Libraries
 - selenium
 - gspread
