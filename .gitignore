@@ -132,3 +132,4 @@ dmypy.json
 creds.json
 .DS_Store
 chromedriver
+info.py
