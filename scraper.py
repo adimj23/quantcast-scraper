@@ -6,9 +6,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.chrome.options import Options
-from login_creds import ID, PW, SHEET_NAME, DRIVER_PATH
+from info import SHEET_NAME, DRIVER_PATH
 from datetime import datetime
-from login import login 
 import gspread
 
 websites = ["kiwireport.com", "worldlifestyle.com","startribune.com"]
