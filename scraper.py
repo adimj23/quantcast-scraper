@@ -25,9 +25,9 @@ sh = gc.open(SHEET_NAME).sheet1
 
 driver.get("https://www.quantcast.com/user/login")
 # Wait for page to load after logging in
-WebDriverWait(driver, 100).until(
-    EC.presence_of_element_located((By.XPATH, '//*[@id="qcDashboard"]/header/h2'))
-)
+# WebDriverWait(driver, 100).until(
+#     EC.presence_of_element_located((By.XPATH, '//*[@id="qcDashboard"]/header/h2'))
+# )
 
 # driver.get("https://www.quantcast.com/measure/properties/")
 # time.sleep(1)
