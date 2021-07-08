@@ -10,10 +10,11 @@ from info import SHEET_NAME, DRIVER_PATH
 from datetime import datetime
 import gspread
 
-websites = ["ballotpedia.org", "baseball-reference.com", "basketball-reference.com", "brainly.com", 
-"britannica.com", "bustle.com", "buzzfeed.com", "campingworld.com", "cars.com"]
+from csv_reader import NAMES
 
-
+# websites = ["ballotpedia.org", "baseball-reference.com", "basketball-reference.com", "brainly.com", 
+# "britannica.com", "bustle.com", "buzzfeed.com", "campingworld.com", "cars.com"]
+websites = NAMES
 
 my_options = webdriver.ChromeOptions()
 my_options.headless = False
@@ -24,10 +25,10 @@ sh = gc.open(SHEET_NAME).sheet1
 
 
 driver.get("https://www.quantcast.com/user/login")
-# Wait for page to load after logging in
-# WebDriverWait(driver, 100).until(
-#     EC.presence_of_element_located((By.XPATH, '//*[@id="qcDashboard"]/header/h2'))
-# )
+
+WebDriverWait(driver, 100).until(
+    EC.presence_of_element_located((By.XPATH, '//*[@id="qcDashboard"]/header/h2'))
+)
 
 # driver.get("https://www.quantcast.com/measure/properties/")
 # time.sleep(1)
@@ -35,25 +36,20 @@ for website in websites:
     demos_row = []
     demos_row.append(website)
     
-    time.sleep(10)
+    time.sleep(1)
     url_name = driver.find_element_by_xpath("//input[@type='search' and @placeholder='Enter a URL']")
     url_name.send_keys(website)
 
     driver.find_element_by_xpath("//input[@type='submit' and @value='Search']").click()
+    # time.sleep(30)
 
-    time.sleep(20)
-    # WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.LINK_TEXT, 'form-control form-control--has-prefix form-control--has-suffix form-control--has-large-prefix form-control--has-large-suffix form-control--has-large-text-input form-control--column-1 search-page-main-content')))
-    
-    
-    # WebDriverWait(driver, 25).until(
-    #     EC.presence_of_element_located((By.CLASS_NAME, 'table__header table__header--align-left'))
-    # )
-
-    # driver.find_element_by_link_text(websites[0]).click()
+    while "page" not in driver.current_url:
+        time.sleep(1)
 
     try:
         driver.find_element_by_link_text(website).click()
-        WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, '//*[@id="tab-title_undefined_DEMOGRAPHICS"]/div/div[2]/article/div[1]/h2')))
+        # WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, '//*[@id="tab-title_undefined_DEMOGRAPHICS"]/div/div[2]/article/div[1]/h2')))
+        time.sleep(15)
         
         try:
 
