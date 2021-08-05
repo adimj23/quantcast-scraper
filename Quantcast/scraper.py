@@ -20,7 +20,8 @@ my_options = webdriver.ChromeOptions()
 my_options.headless = False
 driver = webdriver.Chrome(DRIVER_PATH, options=my_options)
 
-gc = gspread.service_account(filename="creds.json")
+# Change file path to creds.json
+gc = gspread.service_account(filename="/Users/adisrinivasan/UIUC/Quantcast/creds.json")
 sh = gc.open(SHEET_NAME).sheet1
 
 
